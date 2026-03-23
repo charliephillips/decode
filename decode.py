@@ -50,7 +50,11 @@ class Decode:
             matrix[rows - x][y] = char
         #self.add_char(matrix, row)
 
-        print(matrix)
+#        print(matrix)
+        for row in matrix:
+            print()
+            for element in row:
+                print(element, end="")
 
 
     def get_max(self, collumn):
@@ -67,8 +71,8 @@ class Decode:
         return max
 
     def main(self):
-        #self.download()
-        #sleep(5)
+        self.download()
+        sleep(5)
         self.read_doc()
 
 if __name__ == "__main__":
