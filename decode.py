@@ -28,7 +28,6 @@ class Decode:
             #print(table)
             self.make_grid(table)
 
-        #tables = pd.read_table(self.file, encoding='utf-8')
         #print(tables)
 
     def make_grid(self, table: str):
@@ -48,7 +47,6 @@ class Decode:
             #print(f'{x} {char} {y}')
 
             matrix[rows - x][y] = char
-        #self.add_char(matrix, row)
 
 #        print(matrix)
         for row in matrix:
