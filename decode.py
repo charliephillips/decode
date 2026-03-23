@@ -4,6 +4,7 @@ import sys
 from requests import Session
 from time import sleep
 import pandas as pd
+import numpy as np
 
 class Decode:
     def __init__(self, URL: str):
@@ -32,9 +33,24 @@ class Decode:
 
     def make_grid(self, table: str):
         #print(table[0])
-        max_x = self.get_max(table[0])
-        max_y = self.get_max(table[2])
-        print(f"X={max_x} Y={max_y}")
+        cols = self.get_max(table[0])
+        rows = self.get_max(table[2])
+        #print(f"X={rows} Y={cols}")
+   
+        matrix = np.full((rows + 1, cols + 1), ' ')
+
+        #print(matrix)
+
+        for row in range(len(table[0]) -1):
+            y = int(table[0][row + 1])
+            char = table[1][row + 1]
+            x = int(table[2][row + 1])
+            #print(f'{x} {char} {y}')
+
+            matrix[rows - x][y] = char
+        #self.add_char(matrix, row)
+
+        print(matrix)
 
 
     def get_max(self, collumn):
