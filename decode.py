@@ -16,7 +16,7 @@ class Decode:
         session = Session()
         response = session.get(self.URL, params={"id": self.URL}, stream=True)
 
-        print(f"Downloading: {URL}")
+        #print(f"Downloading: {URL}")
         with open(self.file, "wb") as f:
             for chunk in response.iter_content(self.CHUNK_SIZE):
                 if chunk:  # filter out keep-alive new chunks
@@ -36,16 +36,20 @@ class Decode:
         rows = self.get_max(table[2])
         #print(f"X={rows} Y={cols}")
    
+        # Adding one becase we start counting at 0
         matrix = np.full((rows + 1, cols + 1), ' ')
 
         #print(matrix)
 
+        # Subtracting 1 to remove the headers
         for row in range(len(table[0]) -1):
+            # Adding one to skip the headers
             y = int(table[0][row + 1])
             char = table[1][row + 1]
             x = int(table[2][row + 1])
             #print(f'{x} {char} {y}')
 
+            # Subtracting x from rows to rotate the matrix
             matrix[rows - x][y] = char
 
 #        print(matrix)
