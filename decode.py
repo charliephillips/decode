@@ -76,7 +76,7 @@ class Decode:
 
     def main(self):
         self.download()
-        sleep(5)
+        sleep(1)
         self.read_doc()
 
 if __name__ == "__main__":
