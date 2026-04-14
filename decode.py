@@ -57,6 +57,7 @@ class Decode:
             print()
             for element in row:
                 print(element, end="")
+        print()
 
 
     def get_max(self, collumn):
