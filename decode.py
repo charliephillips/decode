@@ -1,10 +1,10 @@
 #!/bin/python3 
 
-import sys
+from sys import argv
 from requests import Session
 from time import sleep
-import pandas as pd
-import numpy as np
+from pandas import read_html
+from numpy import full
 
 class Decode:
     def __init__(self, URL: str):
@@ -23,7 +23,7 @@ class Decode:
                     f.write(chunk)
 
     def read_doc(self):
-        tables = pd.read_html(self.file, encoding='utf-8')
+        tables = read_html(self.file, encoding='utf-8')
         for table in tables:
             #print(table)
             self.make_grid(table)
@@ -37,7 +37,7 @@ class Decode:
         #print(f"X={rows} Y={cols}")
    
         # Adding one becase we start counting at 0
-        matrix = np.full((rows + 1, cols + 1), ' ')
+        matrix = full((rows + 1, cols + 1), ' ')
 
         #print(matrix)
 
@@ -64,9 +64,10 @@ class Decode:
         #print(f'Length: {len(collumn)}')
         for i in range(len(collumn) - 1):
             try:
-                #print(int(collumn[i + 1]))
-                if int(collumn[i + 1]) > max:
-                    max = int(collumn[i + 1])
+                temp = int(collumn[i + 1])
+                #print(temp)
+                if temp > max:
+                    max = temp
             except error as e:
                 print('error: {e}')
             #print(f'max: {max}')
@@ -78,8 +79,8 @@ class Decode:
         self.read_doc()
 
 if __name__ == "__main__":
-    if len(sys.argv) >= 2:
-        URL = sys.argv[1]
+    if len(argv) >= 2:
+        URL = argv[1]
         decode = Decode(URL)
         decode.main()
     else:
