@@ -75,14 +75,19 @@ class Decode:
         return max
 
     def main(self):
-        self.download()
-        sleep(1)
+        if self.URL != "":
+            self.download()
+            sleep(1)
         self.read_doc()
 
 if __name__ == "__main__":
     if len(argv) >= 2:
         URL = argv[1]
         decode = Decode(URL)
-        decode.main()
     else:
         print("Error please include a URL")
+        print("https://docs.google.com/document/d/e/2PACX-1vSvM5gDlNvt7npYHhp_XfsJvuntUhq184By5xO_pA4b_gCWeXb6dM6ZxwN8rE6S4ghUsCj2VKR21oEP/pub")
+        decode = Decode("")
+
+    decode.main()
+
